@@ -1,90 +1,90 @@
 {
   "$schema": "./schema.json",
   "schema_version": 1,
-  "updated": "2026-11-05",
+  "updated": "2026-11-10",
   "notes": "Every value cites a source id from \"sources\". Speed (tokens/sec) is not stored here: the plugin measures it on your machine. No reasoning-level data exists yet; add \"reasoning_curve\" only with a citable source.",
   "sources": {
-    "hermes-index-2026-11-05": {
+    "hermes-index-2026-11-10": {
       "title": "Hermes Index — Agentic Model Leaderboard (Nous Research)",
       "url": "https://portal.nousresearch.com/bench",
-      "retrieved": "2026-11-05",
+      "retrieved": "2026-11-10",
       "license": "Page footer reads \"MIT License\"; whether that covers leaderboard data is unconfirmed.",
       "note": "Mean pass@1 over Hermes Bench, TerminalBench 4, TerminalBench Science and SkillsBench (clean). Every run uses the Hermes Agent harness with reasoning effort set to high where the model offers it. The page publishes no snapshot date, so the retrieval date is used."
     },
     "editorial": {
       "title": "Maintainer summary",
       "url": null,
-      "retrieved": "2026-11-05",
+      "retrieved": "2026-11-10",
       "license": "MIT",
       "note": "One-line explanations written by the maintainer from the sourced values in this file. Open a correction report if one is wrong."
     },
-    "models-dev-anthropic-2026-11-05": {
+    "models-dev-anthropic-2026-11-10": {
       "title": "models.dev — Anthropic listing",
       "url": "https://models.dev/api.json",
-      "retrieved": "2026-11-05",
+      "retrieved": "2026-11-10",
       "license": "MIT (sst/models.dev)",
       "note": "Limits, modalities and $/Mtok as listed for host \"anthropic\". Prices are that host's prices; other hosts can differ."
     },
-    "models-dev-openai-2026-11-05": {
+    "models-dev-openai-2026-11-10": {
       "title": "models.dev — OpenAI listing",
       "url": "https://models.dev/api.json",
-      "retrieved": "2026-11-05",
+      "retrieved": "2026-11-10",
       "license": "MIT (sst/models.dev)",
       "note": "Limits, modalities and $/Mtok as listed for host \"openai\". Prices are that host's prices; other hosts can differ."
     },
-    "models-dev-xai-2026-11-05": {
+    "models-dev-xai-2026-11-10": {
       "title": "models.dev — xAI listing",
       "url": "https://models.dev/api.json",
-      "retrieved": "2026-11-05",
+      "retrieved": "2026-11-10",
       "license": "MIT (sst/models.dev)",
       "note": "Limits, modalities and $/Mtok as listed for host \"xai\". Prices are that host's prices; other hosts can differ."
     },
-    "models-dev-zai-2026-11-05": {
+    "models-dev-zai-2026-11-10": {
       "title": "models.dev — Z.AI listing",
       "url": "https://models.dev/api.json",
-      "retrieved": "2026-11-05",
+      "retrieved": "2026-11-10",
       "license": "MIT (sst/models.dev)",
       "note": "Limits, modalities and $/Mtok as listed for host \"zai\". Prices are that host's prices; other hosts can differ."
     },
-    "models-dev-moonshotai-2026-11-05": {
+    "models-dev-moonshotai-2026-11-10": {
       "title": "models.dev — Moonshot AI listing",
       "url": "https://models.dev/api.json",
-      "retrieved": "2026-11-05",
+      "retrieved": "2026-11-10",
       "license": "MIT (sst/models.dev)",
       "note": "Limits, modalities and $/Mtok as listed for host \"moonshotai\". Prices are that host's prices; other hosts can differ."
     },
-    "models-dev-google-2026-11-05": {
+    "models-dev-google-2026-11-10": {
       "title": "models.dev — Google listing",
       "url": "https://models.dev/api.json",
-      "retrieved": "2026-11-05",
+      "retrieved": "2026-11-10",
       "license": "MIT (sst/models.dev)",
       "note": "Limits, modalities and $/Mtok as listed for host \"google\". Prices are that host's prices; other hosts can differ."
     },
-    "models-dev-openrouter-2026-11-05": {
+    "models-dev-openrouter-2026-11-10": {
       "title": "models.dev — OpenRouter listing",
       "url": "https://models.dev/api.json",
-      "retrieved": "2026-11-05",
+      "retrieved": "2026-11-10",
       "license": "MIT (sst/models.dev)",
       "note": "Limits, modalities and $/Mtok as listed for host \"openrouter\". Prices are that host's prices; other hosts can differ."
     },
-    "models-dev-alibaba-2026-11-05": {
+    "models-dev-alibaba-2026-11-10": {
       "title": "models.dev — Alibaba listing",
       "url": "https://models.dev/api.json",
-      "retrieved": "2026-11-05",
+      "retrieved": "2026-11-10",
       "license": "MIT (sst/models.dev)",
       "note": "Limits, modalities and $/Mtok as listed for host \"alibaba\". Prices are that host's prices; other hosts can differ."
     },
-    "models-dev-stepfun-2026-11-05": {
+    "models-dev-stepfun-2026-11-10": {
       "title": "models.dev — StepFun (China) listing",
       "url": "https://models.dev/api.json",
-      "retrieved": "2026-11-05",
+      "retrieved": "2026-11-10",
       "license": "MIT (sst/models.dev)",
       "note": "Limits, modalities and $/Mtok as listed for host \"stepfun\". Prices are that host's prices; other hosts can differ."
     },
-    "models-dev-novita-ai-2026-11-05": {
+    "models-dev-novita-ai-2026-11-10": {
       "title": "models.dev — Novita AI listing",
       "url": "https://models.dev/api.json",
-      "retrieved": "2026-11-05",
+      "retrieved": "2026-11-10",
       "license": "MIT (sst/models.dev)",
       "note": "Limits, modalities and $/Mtok as listed for host \"novita-ai\". Prices are that host's prices; other hosts can differ."
     }
@@ -101,7 +101,7 @@
       },
       "hermes_index": {
         "v": 63.31,
-        "src": "hermes-index-2026-11-05"
+        "src": "hermes-index-2026-11-10"
       },
       "hermes_index_suites": {
         "v": {
@@ -110,28 +110,28 @@
           "terminalbench_science": 52.9,
           "skillsbench_clean": 69.6
         },
-        "src": "hermes-index-2026-11-05"
+        "src": "hermes-index-2026-11-10"
       },
       "cost_per_task_usd": {
         "v": 4.99,
-        "src": "hermes-index-2026-11-05",
+        "src": "hermes-index-2026-11-10",
         "note": "Marked provisional on the leaderboard (partial run or estimate)."
       },
       "context_tokens": {
         "v": 1000000,
-        "src": "models-dev-anthropic-2026-11-05"
+        "src": "models-dev-anthropic-2026-11-10"
       },
       "max_output_tokens": {
         "v": 128000,
-        "src": "models-dev-anthropic-2026-11-05"
+        "src": "models-dev-anthropic-2026-11-10"
       },
       "price_input_per_mtok": {
         "v": 4,
-        "src": "models-dev-anthropic-2026-11-05"
+        "src": "models-dev-anthropic-2026-11-10"
       },
       "price_output_per_mtok": {
         "v": 20,
-        "src": "models-dev-anthropic-2026-11-05"
+        "src": "models-dev-anthropic-2026-11-10"
       },
       "abilities": {
         "v": [
@@ -140,7 +140,7 @@
           "vision",
           "pdf"
         ],
-        "src": "models-dev-anthropic-2026-11-05"
+        "src": "models-dev-anthropic-2026-11-10"
       }
     },
     {
@@ -154,7 +154,7 @@
       },
       "hermes_index": {
         "v": 57.09,
-        "src": "hermes-index-2026-11-05"
+        "src": "hermes-index-2026-11-10"
       },
       "hermes_index_suites": {
         "v": {
@@ -163,31 +163,31 @@
           "terminalbench_science": 51.4,
           "skillsbench_clean": 52.3
         },
-        "src": "hermes-index-2026-11-05"
+        "src": "hermes-index-2026-11-10"
       },
       "cost_per_task_usd": {
         "v": 1.19,
-        "src": "hermes-index-2026-11-05"
+        "src": "hermes-index-2026-11-10"
       },
       "context_tokens": {
         "v": 1050000,
-        "src": "models-dev-openai-2026-11-05"
+        "src": "models-dev-openai-2026-11-10"
       },
       "max_input_tokens": {
         "v": 922000,
-        "src": "models-dev-openai-2026-11-05"
+        "src": "models-dev-openai-2026-11-10"
       },
       "max_output_tokens": {
         "v": 128000,
-        "src": "models-dev-openai-2026-11-05"
+        "src": "models-dev-openai-2026-11-10"
       },
       "price_input_per_mtok": {
         "v": 2,
-        "src": "models-dev-openai-2026-11-05"
+        "src": "models-dev-openai-2026-11-10"
       },
       "price_output_per_mtok": {
         "v": 10,
-        "src": "models-dev-openai-2026-11-05"
+        "src": "models-dev-openai-2026-11-10"
       },
       "abilities": {
         "v": [
@@ -196,7 +196,7 @@
           "vision",
           "pdf"
         ],
-        "src": "models-dev-openai-2026-11-05"
+        "src": "models-dev-openai-2026-11-10"
       }
     },
     {
@@ -210,7 +210,7 @@
       },
       "hermes_index": {
         "v": 56.25,
-        "src": "hermes-index-2026-11-05"
+        "src": "hermes-index-2026-11-10"
       },
       "hermes_index_suites": {
         "v": {
@@ -219,31 +219,31 @@
           "terminalbench_science": 57.1,
           "skillsbench_clean": 52.9
         },
-        "src": "hermes-index-2026-11-05"
+        "src": "hermes-index-2026-11-10"
       },
       "cost_per_task_usd": {
         "v": 11.61,
-        "src": "hermes-index-2026-11-05"
+        "src": "hermes-index-2026-11-10"
       },
       "context_tokens": {
         "v": 1050000,
-        "src": "models-dev-openai-2026-11-05"
+        "src": "models-dev-openai-2026-11-10"
       },
       "max_input_tokens": {
         "v": 922000,
-        "src": "models-dev-openai-2026-11-05"
+        "src": "models-dev-openai-2026-11-10"
       },
       "max_output_tokens": {
         "v": 128000,
-        "src": "models-dev-openai-2026-11-05"
+        "src": "models-dev-openai-2026-11-10"
       },
       "price_input_per_mtok": {
         "v": 10,
-        "src": "models-dev-openai-2026-11-05"
+        "src": "models-dev-openai-2026-11-10"
       },
       "price_output_per_mtok": {
         "v": 50,
-        "src": "models-dev-openai-2026-11-05"
+        "src": "models-dev-openai-2026-11-10"
       },
       "abilities": {
         "v": [
@@ -252,7 +252,7 @@
           "vision",
           "pdf"
         ],
-        "src": "models-dev-openai-2026-11-05"
+        "src": "models-dev-openai-2026-11-10"
       }
     },
     {
@@ -266,7 +266,7 @@
       },
       "hermes_index": {
         "v": 53.14,
-        "src": "hermes-index-2026-11-05"
+        "src": "hermes-index-2026-11-10"
       },
       "hermes_index_suites": {
         "v": {
@@ -275,28 +275,28 @@
           "terminalbench_science": 35.7,
           "skillsbench_clean": 66.9
         },
-        "src": "hermes-index-2026-11-05"
+        "src": "hermes-index-2026-11-10"
       },
       "cost_per_task_usd": {
         "v": 2.82,
-        "src": "hermes-index-2026-11-05",
+        "src": "hermes-index-2026-11-10",
         "note": "Marked provisional on the leaderboard (partial run or estimate)."
       },
       "context_tokens": {
         "v": 1000000,
-        "src": "models-dev-anthropic-2026-11-05"
+        "src": "models-dev-anthropic-2026-11-10"
       },
       "max_output_tokens": {
         "v": 128000,
-        "src": "models-dev-anthropic-2026-11-05"
+        "src": "models-dev-anthropic-2026-11-10"
       },
       "price_input_per_mtok": {
         "v": 2,
-        "src": "models-dev-anthropic-2026-11-05"
+        "src": "models-dev-anthropic-2026-11-10"
       },
       "price_output_per_mtok": {
         "v": 10,
-        "src": "models-dev-anthropic-2026-11-05"
+        "src": "models-dev-anthropic-2026-11-10"
       },
       "abilities": {
         "v": [
@@ -305,7 +305,7 @@
           "vision",
           "pdf"
         ],
-        "src": "models-dev-anthropic-2026-11-05"
+        "src": "models-dev-anthropic-2026-11-10"
       }
     },
     {
@@ -319,7 +319,7 @@
       },
       "hermes_index": {
         "v": 44.1,
-        "src": "hermes-index-2026-11-05"
+        "src": "hermes-index-2026-11-10"
       },
       "hermes_index_suites": {
         "v": {
@@ -328,31 +328,31 @@
           "terminalbench_science": 18.6,
           "skillsbench_clean": 60.5
         },
-        "src": "hermes-index-2026-11-05"
+        "src": "hermes-index-2026-11-10"
       },
       "cost_per_task_usd": {
         "v": 2.23,
-        "src": "hermes-index-2026-11-05"
+        "src": "hermes-index-2026-11-10"
       },
       "context_tokens": {
         "v": 1050000,
-        "src": "models-dev-openai-2026-11-05"
+        "src": "models-dev-openai-2026-11-10"
       },
       "max_input_tokens": {
         "v": 922000,
-        "src": "models-dev-openai-2026-11-05"
+        "src": "models-dev-openai-2026-11-10"
       },
       "max_output_tokens": {
         "v": 128000,
-        "src": "models-dev-openai-2026-11-05"
+        "src": "models-dev-openai-2026-11-10"
       },
       "price_input_per_mtok": {
         "v": 2,
-        "src": "models-dev-openai-2026-11-05"
+        "src": "models-dev-openai-2026-11-10"
       },
       "price_output_per_mtok": {
         "v": 10,
-        "src": "models-dev-openai-2026-11-05"
+        "src": "models-dev-openai-2026-11-10"
       },
       "abilities": {
         "v": [
@@ -361,7 +361,7 @@
           "vision",
           "pdf"
         ],
-        "src": "models-dev-openai-2026-11-05"
+        "src": "models-dev-openai-2026-11-10"
       }
     },
     {
@@ -375,7 +375,7 @@
       },
       "hermes_index": {
         "v": 39.32,
-        "src": "hermes-index-2026-11-05"
+        "src": "hermes-index-2026-11-10"
       },
       "hermes_index_suites": {
         "v": {
@@ -384,27 +384,27 @@
           "terminalbench_science": 1.4,
           "skillsbench_clean": 68.8
         },
-        "src": "hermes-index-2026-11-05"
+        "src": "hermes-index-2026-11-10"
       },
       "cost_per_task_usd": {
         "v": 10.77,
-        "src": "hermes-index-2026-11-05"
+        "src": "hermes-index-2026-11-10"
       },
       "context_tokens": {
         "v": 500000,
-        "src": "models-dev-xai-2026-11-05"
+        "src": "models-dev-xai-2026-11-10"
       },
       "max_output_tokens": {
         "v": 500000,
-        "src": "models-dev-xai-2026-11-05"
+        "src": "models-dev-xai-2026-11-10"
       },
       "price_input_per_mtok": {
         "v": 2,
-        "src": "models-dev-xai-2026-11-05"
+        "src": "models-dev-xai-2026-11-10"
       },
       "price_output_per_mtok": {
         "v": 6,
-        "src": "models-dev-xai-2026-11-05"
+        "src": "models-dev-xai-2026-11-10"
       },
       "abilities": {
         "v": [
@@ -413,7 +413,7 @@
           "vision",
           "pdf"
         ],
-        "src": "models-dev-xai-2026-11-05"
+        "src": "models-dev-xai-2026-11-10"
       }
     },
     {
@@ -427,7 +427,7 @@
       },
       "hermes_index": {
         "v": 39.23,
-        "src": "hermes-index-2026-11-05"
+        "src": "hermes-index-2026-11-10"
       },
       "hermes_index_suites": {
         "v": {
@@ -436,34 +436,34 @@
           "terminalbench_science": 1.4,
           "skillsbench_clean": 45.6
         },
-        "src": "hermes-index-2026-11-05"
+        "src": "hermes-index-2026-11-10"
       },
       "cost_per_task_usd": {
         "v": 3.78,
-        "src": "hermes-index-2026-11-05"
+        "src": "hermes-index-2026-11-10"
       },
       "context_tokens": {
         "v": 1000000,
-        "src": "models-dev-zai-2026-11-05"
+        "src": "models-dev-zai-2026-11-10"
       },
       "max_output_tokens": {
         "v": 131072,
-        "src": "models-dev-zai-2026-11-05"
+        "src": "models-dev-zai-2026-11-10"
       },
       "price_input_per_mtok": {
         "v": 1.4,
-        "src": "models-dev-zai-2026-11-05"
+        "src": "models-dev-zai-2026-11-10"
       },
       "price_output_per_mtok": {
         "v": 4.4,
-        "src": "models-dev-zai-2026-11-05"
+        "src": "models-dev-zai-2026-11-10"
       },
       "abilities": {
         "v": [
           "reasoning",
           "tools"
         ],
-        "src": "models-dev-zai-2026-11-05"
+        "src": "models-dev-zai-2026-11-10"
       }
     },
     {
@@ -477,7 +477,7 @@
       },
       "hermes_index": {
         "v": 39.16,
-        "src": "hermes-index-2026-11-05"
+        "src": "hermes-index-2026-11-10"
       },
       "hermes_index_suites": {
         "v": {
@@ -486,27 +486,27 @@
           "terminalbench_science": 8.6,
           "skillsbench_clean": 57.5
         },
-        "src": "hermes-index-2026-11-05"
+        "src": "hermes-index-2026-11-10"
       },
       "cost_per_task_usd": {
         "v": 6.5,
-        "src": "hermes-index-2026-11-05"
+        "src": "hermes-index-2026-11-10"
       },
       "context_tokens": {
         "v": 1048576,
-        "src": "models-dev-moonshotai-2026-11-05"
+        "src": "models-dev-moonshotai-2026-11-10"
       },
       "max_output_tokens": {
         "v": 1048576,
-        "src": "models-dev-moonshotai-2026-11-05"
+        "src": "models-dev-moonshotai-2026-11-10"
       },
       "price_input_per_mtok": {
         "v": 3,
-        "src": "models-dev-moonshotai-2026-11-05"
+        "src": "models-dev-moonshotai-2026-11-10"
       },
       "price_output_per_mtok": {
         "v": 15,
-        "src": "models-dev-moonshotai-2026-11-05"
+        "src": "models-dev-moonshotai-2026-11-10"
       },
       "abilities": {
         "v": [
@@ -515,7 +515,7 @@
           "vision",
           "video"
         ],
-        "src": "models-dev-moonshotai-2026-11-05"
+        "src": "models-dev-moonshotai-2026-11-10"
       }
     },
     {
@@ -529,7 +529,7 @@
       },
       "hermes_index": {
         "v": 38.12,
-        "src": "hermes-index-2026-11-05"
+        "src": "hermes-index-2026-11-10"
       },
       "hermes_index_suites": {
         "v": {
@@ -538,27 +538,27 @@
           "terminalbench_science": 8.6,
           "skillsbench_clean": 57.9
         },
-        "src": "hermes-index-2026-11-05"
+        "src": "hermes-index-2026-11-10"
       },
       "cost_per_task_usd": {
         "v": 3.17,
-        "src": "hermes-index-2026-11-05"
+        "src": "hermes-index-2026-11-10"
       },
       "context_tokens": {
         "v": 1048576,
-        "src": "models-dev-google-2026-11-05"
+        "src": "models-dev-google-2026-11-10"
       },
       "max_output_tokens": {
         "v": 65536,
-        "src": "models-dev-google-2026-11-05"
+        "src": "models-dev-google-2026-11-10"
       },
       "price_input_per_mtok": {
         "v": 0.75,
-        "src": "models-dev-google-2026-11-05"
+        "src": "models-dev-google-2026-11-10"
       },
       "price_output_per_mtok": {
         "v": 3.75,
-        "src": "models-dev-google-2026-11-05"
+        "src": "models-dev-google-2026-11-10"
       },
       "abilities": {
         "v": [
@@ -569,7 +569,7 @@
           "audio",
           "video"
         ],
-        "src": "models-dev-google-2026-11-05"
+        "src": "models-dev-google-2026-11-10"
       }
     },
     {
@@ -583,7 +583,7 @@
       },
       "hermes_index": {
         "v": 37,
-        "src": "hermes-index-2026-11-05"
+        "src": "hermes-index-2026-11-10"
       },
       "hermes_index_suites": {
         "v": {
@@ -592,27 +592,27 @@
           "terminalbench_science": 8.6,
           "skillsbench_clean": 54.8
         },
-        "src": "hermes-index-2026-11-05"
+        "src": "hermes-index-2026-11-10"
       },
       "cost_per_task_usd": {
         "v": 0.488,
-        "src": "hermes-index-2026-11-05"
+        "src": "hermes-index-2026-11-10"
       },
       "context_tokens": {
         "v": 1000000,
-        "src": "models-dev-anthropic-2026-11-05"
+        "src": "models-dev-anthropic-2026-11-10"
       },
       "max_output_tokens": {
         "v": 128000,
-        "src": "models-dev-anthropic-2026-11-05"
+        "src": "models-dev-anthropic-2026-11-10"
       },
       "price_input_per_mtok": {
         "v": 0.1,
-        "src": "models-dev-anthropic-2026-11-05"
+        "src": "models-dev-anthropic-2026-11-10"
       },
       "price_output_per_mtok": {
         "v": 0.5,
-        "src": "models-dev-anthropic-2026-11-05"
+        "src": "models-dev-anthropic-2026-11-10"
       },
       "abilities": {
         "v": [
@@ -621,7 +621,7 @@
           "vision",
           "pdf"
         ],
-        "src": "models-dev-anthropic-2026-11-05"
+        "src": "models-dev-anthropic-2026-11-10"
       }
     },
     {
@@ -635,7 +635,7 @@
       },
       "hermes_index": {
         "v": 36.91,
-        "src": "hermes-index-2026-11-05"
+        "src": "hermes-index-2026-11-10"
       },
       "hermes_index_suites": {
         "v": {
@@ -644,27 +644,27 @@
           "terminalbench_science": 2.9,
           "skillsbench_clean": 56.5
         },
-        "src": "hermes-index-2026-11-05"
+        "src": "hermes-index-2026-11-10"
       },
       "cost_per_task_usd": {
         "v": 0.259,
-        "src": "hermes-index-2026-11-05"
+        "src": "hermes-index-2026-11-10"
       },
       "context_tokens": {
         "v": 1048576,
-        "src": "models-dev-openrouter-2026-11-05"
+        "src": "models-dev-openrouter-2026-11-10"
       },
       "max_output_tokens": {
         "v": 943718,
-        "src": "models-dev-openrouter-2026-11-05"
+        "src": "models-dev-openrouter-2026-11-10"
       },
       "price_input_per_mtok": {
-        "v": 0.045,
-        "src": "models-dev-openrouter-2026-11-05"
+        "v": 0.3,
+        "src": "models-dev-openrouter-2026-11-10"
       },
       "price_output_per_mtok": {
-        "v": 0.5,
-        "src": "models-dev-openrouter-2026-11-05"
+        "v": 1.2,
+        "src": "models-dev-openrouter-2026-11-10"
       },
       "abilities": {
         "v": [
@@ -672,7 +672,7 @@
           "tools",
           "vision"
         ],
-        "src": "models-dev-openrouter-2026-11-05"
+        "src": "models-dev-openrouter-2026-11-10"
       }
     },
     {
@@ -686,7 +686,7 @@
       },
       "hermes_index": {
         "v": 36.17,
-        "src": "hermes-index-2026-11-05"
+        "src": "hermes-index-2026-11-10"
       },
       "hermes_index_suites": {
         "v": {
@@ -695,27 +695,27 @@
           "terminalbench_science": 5.7,
           "skillsbench_clean": 51
         },
-        "src": "hermes-index-2026-11-05"
+        "src": "hermes-index-2026-11-10"
       },
       "cost_per_task_usd": {
         "v": 6.69,
-        "src": "hermes-index-2026-11-05"
+        "src": "hermes-index-2026-11-10"
       },
       "context_tokens": {
         "v": 1000000,
-        "src": "models-dev-alibaba-2026-11-05"
+        "src": "models-dev-alibaba-2026-11-10"
       },
       "max_output_tokens": {
         "v": 131072,
-        "src": "models-dev-alibaba-2026-11-05"
+        "src": "models-dev-alibaba-2026-11-10"
       },
       "price_input_per_mtok": {
         "v": 2,
-        "src": "models-dev-alibaba-2026-11-05"
+        "src": "models-dev-alibaba-2026-11-10"
       },
       "price_output_per_mtok": {
         "v": 6,
-        "src": "models-dev-alibaba-2026-11-05"
+        "src": "models-dev-alibaba-2026-11-10"
       },
       "abilities": {
         "v": [
@@ -725,7 +725,7 @@
           "pdf",
           "video"
         ],
-        "src": "models-dev-alibaba-2026-11-05"
+        "src": "models-dev-alibaba-2026-11-10"
       }
     },
     {
@@ -739,7 +739,7 @@
       },
       "hermes_index": {
         "v": 34.95,
-        "src": "hermes-index-2026-11-05"
+        "src": "hermes-index-2026-11-10"
       },
       "hermes_index_suites": {
         "v": {
@@ -748,27 +748,27 @@
           "terminalbench_science": 2.9,
           "skillsbench_clean": 42.6
         },
-        "src": "hermes-index-2026-11-05"
+        "src": "hermes-index-2026-11-10"
       },
       "cost_per_task_usd": {
         "v": 0.497,
-        "src": "hermes-index-2026-11-05"
+        "src": "hermes-index-2026-11-10"
       },
       "context_tokens": {
         "v": 1000000,
-        "src": "models-dev-zai-2026-11-05"
+        "src": "models-dev-zai-2026-11-10"
       },
       "max_output_tokens": {
         "v": 131072,
-        "src": "models-dev-zai-2026-11-05"
+        "src": "models-dev-zai-2026-11-10"
       },
       "price_input_per_mtok": {
         "v": 0.15,
-        "src": "models-dev-zai-2026-11-05"
+        "src": "models-dev-zai-2026-11-10"
       },
       "price_output_per_mtok": {
         "v": 0.5,
-        "src": "models-dev-zai-2026-11-05"
+        "src": "models-dev-zai-2026-11-10"
       },
       "abilities": {
         "v": [
@@ -778,7 +778,7 @@
           "pdf",
           "video"
         ],
-        "src": "models-dev-zai-2026-11-05"
+        "src": "models-dev-zai-2026-11-10"
       }
     },
     {
@@ -792,7 +792,7 @@
       },
       "hermes_index": {
         "v": 33.89,
-        "src": "hermes-index-2026-11-05"
+        "src": "hermes-index-2026-11-10"
       },
       "hermes_index_suites": {
         "v": {
@@ -801,31 +801,31 @@
           "terminalbench_science": 4.8,
           "skillsbench_clean": 54
         },
-        "src": "hermes-index-2026-11-05"
+        "src": "hermes-index-2026-11-10"
       },
       "cost_per_task_usd": {
         "v": 0.141,
-        "src": "hermes-index-2026-11-05"
+        "src": "hermes-index-2026-11-10"
       },
       "context_tokens": {
         "v": 1050000,
-        "src": "models-dev-openai-2026-11-05"
+        "src": "models-dev-openai-2026-11-10"
       },
       "max_input_tokens": {
         "v": 922000,
-        "src": "models-dev-openai-2026-11-05"
+        "src": "models-dev-openai-2026-11-10"
       },
       "max_output_tokens": {
         "v": 128000,
-        "src": "models-dev-openai-2026-11-05"
+        "src": "models-dev-openai-2026-11-10"
       },
       "price_input_per_mtok": {
         "v": 0.1,
-        "src": "models-dev-openai-2026-11-05"
+        "src": "models-dev-openai-2026-11-10"
       },
       "price_output_per_mtok": {
         "v": 0.5,
-        "src": "models-dev-openai-2026-11-05"
+        "src": "models-dev-openai-2026-11-10"
       },
       "abilities": {
         "v": [
@@ -834,7 +834,7 @@
           "vision",
           "pdf"
         ],
-        "src": "models-dev-openai-2026-11-05"
+        "src": "models-dev-openai-2026-11-10"
       }
     },
     {
@@ -848,7 +848,7 @@
       },
       "hermes_index": {
         "v": 32.83,
-        "src": "hermes-index-2026-11-05"
+        "src": "hermes-index-2026-11-10"
       },
       "hermes_index_suites": {
         "v": {
@@ -857,31 +857,31 @@
           "terminalbench_science": 7.1,
           "skillsbench_clean": 42.3
         },
-        "src": "hermes-index-2026-11-05"
+        "src": "hermes-index-2026-11-10"
       },
       "cost_per_task_usd": {
         "v": 1.75,
-        "src": "hermes-index-2026-11-05"
+        "src": "hermes-index-2026-11-10"
       },
       "context_tokens": {
         "v": 1000000,
-        "src": "models-dev-stepfun-2026-11-05"
+        "src": "models-dev-stepfun-2026-11-10"
       },
       "max_input_tokens": {
         "v": 1000000,
-        "src": "models-dev-stepfun-2026-11-05"
+        "src": "models-dev-stepfun-2026-11-10"
       },
       "max_output_tokens": {
         "v": 65536,
-        "src": "models-dev-stepfun-2026-11-05"
+        "src": "models-dev-stepfun-2026-11-10"
       },
       "price_input_per_mtok": {
         "v": 1.04613,
-        "src": "models-dev-stepfun-2026-11-05"
+        "src": "models-dev-stepfun-2026-11-10"
       },
       "price_output_per_mtok": {
         "v": 2.98895,
-        "src": "models-dev-stepfun-2026-11-05"
+        "src": "models-dev-stepfun-2026-11-10"
       },
       "abilities": {
         "v": [
@@ -890,7 +890,7 @@
           "vision",
           "video"
         ],
-        "src": "models-dev-stepfun-2026-11-05"
+        "src": "models-dev-stepfun-2026-11-10"
       }
     },
     {
@@ -904,7 +904,7 @@
       },
       "hermes_index": {
         "v": 26.13,
-        "src": "hermes-index-2026-11-05"
+        "src": "hermes-index-2026-11-10"
       },
       "hermes_index_suites": {
         "v": {
@@ -913,34 +913,63 @@
           "terminalbench_science": 1.4,
           "skillsbench_clean": 31.8
         },
-        "src": "hermes-index-2026-11-05"
+        "src": "hermes-index-2026-11-10"
       },
       "cost_per_task_usd": {
         "v": 0.482,
-        "src": "hermes-index-2026-11-05"
+        "src": "hermes-index-2026-11-10"
       },
       "context_tokens": {
         "v": 1000000,
-        "src": "models-dev-novita-ai-2026-11-05"
+        "src": "models-dev-novita-ai-2026-11-10"
       },
       "max_output_tokens": {
         "v": 64000,
-        "src": "models-dev-novita-ai-2026-11-05"
+        "src": "models-dev-novita-ai-2026-11-10"
       },
       "price_input_per_mtok": {
         "v": 0.834,
-        "src": "models-dev-novita-ai-2026-11-05"
+        "src": "models-dev-novita-ai-2026-11-10"
       },
       "price_output_per_mtok": {
         "v": 2.501,
-        "src": "models-dev-novita-ai-2026-11-05"
+        "src": "models-dev-novita-ai-2026-11-10"
       },
       "abilities": {
         "v": [
           "reasoning",
           "tools"
         ],
-        "src": "models-dev-novita-ai-2026-11-05"
+        "src": "models-dev-novita-ai-2026-11-10"
+      }
+    },
+    {
+      "id": "nemotron-super-3-5",
+      "name": "Nemotron Super 3.5",
+      "vendor": "NVIDIA",
+      "aliases": [
+        "nemotron-3-5-super"
+      ],
+      "summary": {
+        "v": "Low on the table with no TerminalBench 4 passes; cheap per task. Limits and prices are left out until a listing can be matched to this exact model.",
+        "src": "editorial"
+      },
+      "hermes_index": {
+        "v": 24.1,
+        "src": "hermes-index-2026-11-10"
+      },
+      "hermes_index_suites": {
+        "v": {
+          "hermes_bench": 63.44,
+          "terminalbench_4": 0,
+          "terminalbench_science": 1.4,
+          "skillsbench_clean": 31.6
+        },
+        "src": "hermes-index-2026-11-10"
+      },
+      "cost_per_task_usd": {
+        "v": 0.467,
+        "src": "hermes-index-2026-11-10"
       }
     },
     {
@@ -954,7 +983,7 @@
       },
       "hermes_index": {
         "v": 21.56,
-        "src": "hermes-index-2026-11-05"
+        "src": "hermes-index-2026-11-10"
       },
       "hermes_index_suites": {
         "v": {
@@ -963,34 +992,34 @@
           "terminalbench_science": 0,
           "skillsbench_clean": 32.4
         },
-        "src": "hermes-index-2026-11-05"
+        "src": "hermes-index-2026-11-10"
       },
       "cost_per_task_usd": {
         "v": 0.054,
-        "src": "hermes-index-2026-11-05"
+        "src": "hermes-index-2026-11-10"
       },
       "context_tokens": {
         "v": 262144,
-        "src": "models-dev-novita-ai-2026-11-05"
+        "src": "models-dev-novita-ai-2026-11-10"
       },
       "max_output_tokens": {
         "v": 32768,
-        "src": "models-dev-novita-ai-2026-11-05"
+        "src": "models-dev-novita-ai-2026-11-10"
       },
       "price_input_per_mtok": {
         "v": 0.06,
-        "src": "models-dev-novita-ai-2026-11-05"
+        "src": "models-dev-novita-ai-2026-11-10"
       },
       "price_output_per_mtok": {
         "v": 0.18,
-        "src": "models-dev-novita-ai-2026-11-05"
+        "src": "models-dev-novita-ai-2026-11-10"
       },
       "abilities": {
         "v": [
           "reasoning",
           "tools"
         ],
-        "src": "models-dev-novita-ai-2026-11-05"
+        "src": "models-dev-novita-ai-2026-11-10"
       }
     }
   ]

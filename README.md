@@ -10,8 +10,10 @@ explains that model, and **Use this model** switches your chat to it:
 - **Hermes Index** score and rank, with the per-suite breakdown (Hermes Bench,
   TerminalBench 4, TerminalBench Science, SkillsBench)
 - **Cost per task** on the Hermes Index
-- A **score-against-cost frontier chart**: every indexed model plotted, with the
-  Pareto line joining models that score higher than everything cheaper. Each
+- A **score-against-cost frontier chart**: every indexed model plotted and named, with the
+  Pareto line joining models that score higher than everything cheaper. Switch the
+  score (Hermes Index or any one suite) and the cost (cost per task, input price,
+  output price, or a 3:1 blended token price) to see a different frontier. Each
   model says whether it is on the line and, if not, which model beats it. Click
   a dot to open that model.
 - **Context window, max input, max output**
