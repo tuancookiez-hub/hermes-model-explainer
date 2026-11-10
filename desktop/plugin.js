@@ -2,14 +2,15 @@
  * Model Explainer — Hermes Desktop plugin.
  *
  * A "Models" page built around Hermes' own model picker: the SDK's ModelCatalogMenu
- * sits in the left column, and choosing a row explains that model (nothing here
- * changes the model you chat with). Facts come from data/models.json, embedded below
+ * sits in the left column, and choosing a row explains that model. Only the "Use this
+ * model" button switches the chat model, with the same request Hermes' picker sends. Facts come from data/models.json, embedded below
  * at build time and refreshed from the public copy on GitHub, plus the speed and spend
  * Hermes measured on this machine.
  *
  * Surfaces: ROUTES_AREA page, SIDEBAR_NAV_AREA row, PALETTE_AREA commands,
  * MODEL_MENU_ROW_AREA badge. Reads: model.options (through the picker),
- * host.state.model / focusedSessionId / focusedUsage. Writes: ctx.storage only.
+ * host.state.model / focusedSessionId / focusedUsage. Writes: ctx.storage, and config.set
+ * model when you press "Use this model".
  * Network: one GET of the data file, at most daily, when the page opens (see DATA_URL);
  * the reply is validated JSON and is never run. Timer: a debounced storage save.
  */
@@ -37,6 +38,8 @@ import {
   Tip,
   useValue
 } from '@hermes/plugin-sdk'
+// Read as a namespace so a Hermes build without the shared confirm flow still loads this file.
+import * as SDK from '@hermes/plugin-sdk'
 
 const ID = 'model-explainer'
 const ROUTE = '/model-explainer'
@@ -851,6 +854,76 @@ function correctionUrl(modelId, entry) {
   return `${REPO_URL}/issues/new?${params.toString()}`
 }
 
+// ---------------------------------------------------------------------------
+// "Use this model": the same config.set request Hermes' own picker sends. In an open chat
+// it is scoped to that chat (--session), so it never rewrites the profile default. A
+// guarded switch (data policy, expensive model) asks through Hermes' shared confirm dialog.
+// ---------------------------------------------------------------------------
+
+const $switching = atom('')
+
+async function switchModel(sel, label) {
+  if ($switching.get()) return
+  const sessionId = host.state.focusedSessionId?.get?.() || ''
+  const send = confirmed =>
+    host.request('config.set', {
+      ...(sessionId ? { session_id: sessionId } : {}),
+      key: 'model',
+      value: `${sel.model} --provider ${sel.provider}${sessionId ? ' --session' : ''}`,
+      ...(confirmed ? { confirm_expensive_model: true } : {})
+    })
+  const finish = res => {
+    void queryClient.invalidateQueries({ queryKey: ['model-options'] })
+    host.notify?.({
+      kind: res?.deferred ? 'info' : 'success',
+      message: res?.deferred ? `${label} will be used from the next turn.` : `Now using ${label}${sessionId ? ' in this chat' : ''}.`
+    })
+  }
+  const failed = `Could not switch to ${label}.`
+  $switching.set(sel.model)
+  try {
+    const res = await send(false)
+    if (!res?.confirm_required) return finish(res)
+    if (typeof SDK.surfaceModelSwitchConfirm === 'function') {
+      await SDK.surfaceModelSwitchConfirm({
+        confirmMessage: res.confirm_message,
+        failureMessage: failed,
+        isStale: () => (host.state.focusedSessionId?.get?.() || '') !== sessionId,
+        model: sel.model,
+        requestConfirmed: () => send(true),
+        finish
+      })
+    } else {
+      host.notify?.({ kind: 'info', message: res.confirm_message || `Hermes asks you to confirm ${label}. Pick it in the chat's model menu.` })
+    }
+  } catch (err) {
+    host.notify?.({ kind: 'error', message: `${failed} ${String(err?.message ?? '').slice(0, 160)}`.trim() })
+  } finally {
+    $switching.set('')
+  }
+}
+
+function UseModelButton({ sel, isCurrent, label }) {
+  const switching = useValue($switching)
+  const gateway = useValue(host.state.gateway)
+  const offline = gateway !== 'open'
+  const why = isCurrent
+    ? 'Your chat already uses this model.'
+    : !sel.provider
+      ? 'None of your providers offers this model.'
+      : offline
+        ? 'Hermes is not connected.'
+        : 'Switch your chat to this model.'
+  const button = jsx(Button, {
+    size: 'sm',
+    variant: 'default',
+    disabled: isCurrent || !sel.provider || offline || Boolean(switching),
+    onClick: () => void switchModel(sel, label),
+    children: switching === sel.model ? 'Switching…' : isCurrent ? 'In use' : 'Use this model'
+  })
+  return jsx(Tip, { label: why, children: jsx('span', { style: { display: 'inline-flex' }, children: button }) })
+}
+
 function Detail({ sel, providerRow, measuredAll, currentModel, onPick, compare }) {
   if (!sel) {
     return jsx('div', {
@@ -898,7 +971,10 @@ function Detail({ sel, providerRow, measuredAll, currentModel, onPick, compare }
           isCurrent ? jsx(Badge, { variant: 'default', children: 'In use' }) : null,
           rank ? jsx(Badge, { variant: 'muted', children: `#${rank} of ${RANKED.length} on Hermes Index` }) : null,
           verdict?.on ? jsx(Badge, { variant: 'success', children: 'On the frontier' }) : null,
-          jsx('span', { style: { marginLeft: 'auto' }, children: compareButton })
+          jsxs('span', {
+            style: { marginLeft: 'auto', display: 'inline-flex', gap: 8, alignItems: 'center' },
+            children: [compareButton, jsx(UseModelButton, { sel, isCurrent, label: entry?.name ?? sel.model })]
+          })
         ]
       }),
       jsx('div', {
@@ -1226,7 +1302,7 @@ function CompareView({ picks, providers, measuredAll, onOpen, onPick }) {
 // ---------------------------------------------------------------------------
 // The picker. This is Hermes' own menu, so sections, names, -fast grouping, favorites
 // and the Edit Models shortlist match the composer. The controller gives a selection a
-// different meaning here: it opens the explanation and leaves your model alone. The menu
+// different meaning here: it opens the explanation; "Use this model" does the switch. The menu
 // portals into this column, so it scrolls, hides and unmounts with the page.
 // ---------------------------------------------------------------------------
 

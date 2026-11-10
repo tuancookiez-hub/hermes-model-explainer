@@ -5,7 +5,7 @@
 A **Models** page for Hermes Desktop built around your real model picker. The left
 column is Hermes' own menu, so provider sections, names, `-fast` grouping, favorites
 and your Edit Models shortlist are exactly what the composer shows. Choosing a row
-explains that model and leaves the model you chat with alone:
+explains that model, and **Use this model** switches your chat to it:
 
 - **Hermes Index** score and rank, with the per-suite breakdown (Hermes Bench,
   TerminalBench 4, TerminalBench Science, SkillsBench)
@@ -50,9 +50,9 @@ Open it from the sidebar (**Models**) or ⌘K → **Model Explainer: Open** /
 |---|---|
 | Network | **One GET of [`data/models.json`](data/models.json) from `raw.githubusercontent.com`**, at most once a day and only when you open the page, plus the check button. It sends no cookies, no referrer and nothing about you or your models; GitHub sees your IP address, as with any download. Turn it off with **Check daily when this page opens**. The bundled copy keeps working offline. |
 | Reads | `model.options`, through Hermes' own picker component, and the focused session's model, profile and usage figures (`host.state.model`, `focusedSessionId`, `focusedSessionProfile`, `focusedUsage`). |
-| Writes | Plugin storage only (`ctx.storage`, namespace `hermes.plugin.model-explainer.*`): your measured speed/spend per model (capped at 40 sessions × 200 models), the latest valid data file, when it was last checked, the daily-check switch and your compare list. Stars, the Edit Models shortlist and collapsed sections are Hermes' own picker settings, so changing them here changes them in the composer too. |
+| Writes | Your chat model, only when you press **Use this model**: it sends the same `config.set model` request as Hermes' own picker, scoped to the open chat (`--session`) so your default is left alone, and a guarded switch asks through Hermes' confirm dialog. Otherwise plugin storage only (`ctx.storage`, namespace `hermes.plugin.model-explainer.*`): your measured speed/spend per model (capped at 40 sessions × 200 models), the latest valid data file, when it was last checked, the daily-check switch and your compare list. Stars, the Edit Models shortlist and collapsed sections are Hermes' own picker settings, so changing them here changes them in the composer too. |
 | Background work | One listener on the usage stream; storage is saved at most every 5 seconds while you chat. While the page is open, Hermes' picker re-reads prices the way it does in the composer (a few times over about 10 seconds, only while they are warming). Nothing else runs in the background. |
-| Costs | None. It makes no model calls. |
+| Costs | None from the plugin: it makes no model calls. A model you switch to is billed by its provider as usual. |
 | Credentials | None read or stored. |
 | Agent side | None: no tools, hooks, middleware, slash commands or env vars. |
 
