@@ -1,0 +1,86 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Model Explainer data file",
+  "description": "Hand-maintained model facts. Every value is { v, src } where src names an entry in sources. scripts/embed-data.mjs enforces the full rules.",
+  "type": "object",
+  "required": ["schema_version", "updated", "sources", "models"],
+  "properties": {
+    "schema_version": { "const": 1 },
+    "updated": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$" },
+    "notes": { "type": "string" },
+    "sources": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["title", "url", "retrieved"],
+        "properties": {
+          "title": { "type": "string" },
+          "url": { "type": ["string", "null"], "pattern": "^https://" },
+          "retrieved": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$" },
+          "license": { "type": "string" },
+          "note": { "type": "string" }
+        }
+      }
+    },
+    "models": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "name"],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+          "name": { "type": "string" },
+          "vendor": { "type": "string" },
+          "aliases": { "type": "array", "items": { "type": "string" } },
+          "summary": { "$ref": "#/$defs/text" },
+          "hermes_index": { "$ref": "#/$defs/number" },
+          "hermes_index_suites": {
+            "type": "object",
+            "required": ["v", "src"],
+            "properties": { "v": { "type": "object", "additionalProperties": { "type": "number" } }, "src": { "type": "string" } }
+          },
+          "cost_per_task_usd": { "$ref": "#/$defs/number" },
+          "context_tokens": { "$ref": "#/$defs/number" },
+          "max_input_tokens": { "$ref": "#/$defs/number" },
+          "max_output_tokens": { "$ref": "#/$defs/number" },
+          "price_input_per_mtok": { "$ref": "#/$defs/number" },
+          "price_output_per_mtok": { "$ref": "#/$defs/number" },
+          "abilities": {
+            "type": "object",
+            "required": ["v", "src"],
+            "properties": {
+              "v": { "type": "array", "items": { "enum": ["reasoning", "tools", "vision", "pdf", "audio", "video"] } },
+              "src": { "type": "string" }
+            }
+          },
+          "reasoning_curve": {
+            "type": "object",
+            "required": ["metric", "points", "src"],
+            "properties": {
+              "metric": { "type": "string" },
+              "src": { "type": "string" },
+              "points": {
+                "type": "array",
+                "minItems": 2,
+                "items": { "type": "object", "required": ["effort", "v"], "properties": { "effort": { "type": "string" }, "v": { "type": "number" } } }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "number": {
+      "type": "object",
+      "required": ["v", "src"],
+      "properties": { "v": { "type": "number", "minimum": 0 }, "src": { "type": "string" }, "note": { "type": "string" }, "date": { "type": "string" } }
+    },
+    "text": {
+      "type": "object",
+      "required": ["v", "src"],
+      "properties": { "v": { "type": "string", "maxLength": 160 }, "src": { "type": "string" }, "date": { "type": "string" } }
+    }
+  }
+}

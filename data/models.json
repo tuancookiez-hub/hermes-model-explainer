@@ -1,0 +1,997 @@
+{
+  "$schema": "./schema.json",
+  "schema_version": 1,
+  "updated": "2026-11-05",
+  "notes": "Every value cites a source id from \"sources\". Speed (tokens/sec) is not stored here: the plugin measures it on your machine. No reasoning-level data exists yet; add \"reasoning_curve\" only with a citable source.",
+  "sources": {
+    "hermes-index-2026-11-05": {
+      "title": "Hermes Index — Agentic Model Leaderboard (Nous Research)",
+      "url": "https://portal.nousresearch.com/bench",
+      "retrieved": "2026-11-05",
+      "license": "Page footer reads \"MIT License\"; whether that covers leaderboard data is unconfirmed.",
+      "note": "Mean pass@1 over Hermes Bench, TerminalBench 4, TerminalBench Science and SkillsBench (clean). Every run uses the Hermes Agent harness with reasoning effort set to high where the model offers it. The page publishes no snapshot date, so the retrieval date is used."
+    },
+    "editorial": {
+      "title": "Maintainer summary",
+      "url": null,
+      "retrieved": "2026-11-05",
+      "license": "MIT",
+      "note": "One-line explanations written by the maintainer from the sourced values in this file. Open a correction report if one is wrong."
+    },
+    "models-dev-anthropic-2026-11-05": {
+      "title": "models.dev — Anthropic listing",
+      "url": "https://models.dev/api.json",
+      "retrieved": "2026-11-05",
+      "license": "MIT (sst/models.dev)",
+      "note": "Limits, modalities and $/Mtok as listed for host \"anthropic\". Prices are that host's prices; other hosts can differ."
+    },
+    "models-dev-openai-2026-11-05": {
+      "title": "models.dev — OpenAI listing",
+      "url": "https://models.dev/api.json",
+      "retrieved": "2026-11-05",
+      "license": "MIT (sst/models.dev)",
+      "note": "Limits, modalities and $/Mtok as listed for host \"openai\". Prices are that host's prices; other hosts can differ."
+    },
+    "models-dev-xai-2026-11-05": {
+      "title": "models.dev — xAI listing",
+      "url": "https://models.dev/api.json",
+      "retrieved": "2026-11-05",
+      "license": "MIT (sst/models.dev)",
+      "note": "Limits, modalities and $/Mtok as listed for host \"xai\". Prices are that host's prices; other hosts can differ."
+    },
+    "models-dev-zai-2026-11-05": {
+      "title": "models.dev — Z.AI listing",
+      "url": "https://models.dev/api.json",
+      "retrieved": "2026-11-05",
+      "license": "MIT (sst/models.dev)",
+      "note": "Limits, modalities and $/Mtok as listed for host \"zai\". Prices are that host's prices; other hosts can differ."
+    },
+    "models-dev-moonshotai-2026-11-05": {
+      "title": "models.dev — Moonshot AI listing",
+      "url": "https://models.dev/api.json",
+      "retrieved": "2026-11-05",
+      "license": "MIT (sst/models.dev)",
+      "note": "Limits, modalities and $/Mtok as listed for host \"moonshotai\". Prices are that host's prices; other hosts can differ."
+    },
+    "models-dev-google-2026-11-05": {
+      "title": "models.dev — Google listing",
+      "url": "https://models.dev/api.json",
+      "retrieved": "2026-11-05",
+      "license": "MIT (sst/models.dev)",
+      "note": "Limits, modalities and $/Mtok as listed for host \"google\". Prices are that host's prices; other hosts can differ."
+    },
+    "models-dev-openrouter-2026-11-05": {
+      "title": "models.dev — OpenRouter listing",
+      "url": "https://models.dev/api.json",
+      "retrieved": "2026-11-05",
+      "license": "MIT (sst/models.dev)",
+      "note": "Limits, modalities and $/Mtok as listed for host \"openrouter\". Prices are that host's prices; other hosts can differ."
+    },
+    "models-dev-alibaba-2026-11-05": {
+      "title": "models.dev — Alibaba listing",
+      "url": "https://models.dev/api.json",
+      "retrieved": "2026-11-05",
+      "license": "MIT (sst/models.dev)",
+      "note": "Limits, modalities and $/Mtok as listed for host \"alibaba\". Prices are that host's prices; other hosts can differ."
+    },
+    "models-dev-stepfun-2026-11-05": {
+      "title": "models.dev — StepFun (China) listing",
+      "url": "https://models.dev/api.json",
+      "retrieved": "2026-11-05",
+      "license": "MIT (sst/models.dev)",
+      "note": "Limits, modalities and $/Mtok as listed for host \"stepfun\". Prices are that host's prices; other hosts can differ."
+    },
+    "models-dev-novita-ai-2026-11-05": {
+      "title": "models.dev — Novita AI listing",
+      "url": "https://models.dev/api.json",
+      "retrieved": "2026-11-05",
+      "license": "MIT (sst/models.dev)",
+      "note": "Limits, modalities and $/Mtok as listed for host \"novita-ai\". Prices are that host's prices; other hosts can differ."
+    }
+  },
+  "models": [
+    {
+      "id": "claude-opus-5-5",
+      "name": "Claude Opus 5.5",
+      "vendor": "Anthropic",
+      "aliases": [],
+      "summary": {
+        "v": "Top Hermes Index score; the strongest agent in this snapshot, at a mid-to-high cost per task.",
+        "src": "editorial"
+      },
+      "hermes_index": {
+        "v": 63.31,
+        "src": "hermes-index-2026-11-05"
+      },
+      "hermes_index_suites": {
+        "v": {
+          "hermes_bench": 76.73,
+          "terminalbench_4": 54,
+          "terminalbench_science": 52.9,
+          "skillsbench_clean": 69.6
+        },
+        "src": "hermes-index-2026-11-05"
+      },
+      "cost_per_task_usd": {
+        "v": 4.99,
+        "src": "hermes-index-2026-11-05",
+        "note": "Marked provisional on the leaderboard (partial run or estimate)."
+      },
+      "context_tokens": {
+        "v": 1000000,
+        "src": "models-dev-anthropic-2026-11-05"
+      },
+      "max_output_tokens": {
+        "v": 128000,
+        "src": "models-dev-anthropic-2026-11-05"
+      },
+      "price_input_per_mtok": {
+        "v": 4,
+        "src": "models-dev-anthropic-2026-11-05"
+      },
+      "price_output_per_mtok": {
+        "v": 20,
+        "src": "models-dev-anthropic-2026-11-05"
+      },
+      "abilities": {
+        "v": [
+          "reasoning",
+          "tools",
+          "vision",
+          "pdf"
+        ],
+        "src": "models-dev-anthropic-2026-11-05"
+      }
+    },
+    {
+      "id": "gpt-6-1-sol",
+      "name": "GPT 6.1 Sol",
+      "vendor": "OpenAI",
+      "aliases": [],
+      "summary": {
+        "v": "Second on the Hermes Index at about a quarter of Opus 5.5's cost per task; the value pick among frontier models.",
+        "src": "editorial"
+      },
+      "hermes_index": {
+        "v": 57.09,
+        "src": "hermes-index-2026-11-05"
+      },
+      "hermes_index_suites": {
+        "v": {
+          "hermes_bench": 73.93,
+          "terminalbench_4": 50.8,
+          "terminalbench_science": 51.4,
+          "skillsbench_clean": 52.3
+        },
+        "src": "hermes-index-2026-11-05"
+      },
+      "cost_per_task_usd": {
+        "v": 1.19,
+        "src": "hermes-index-2026-11-05"
+      },
+      "context_tokens": {
+        "v": 1050000,
+        "src": "models-dev-openai-2026-11-05"
+      },
+      "max_input_tokens": {
+        "v": 922000,
+        "src": "models-dev-openai-2026-11-05"
+      },
+      "max_output_tokens": {
+        "v": 128000,
+        "src": "models-dev-openai-2026-11-05"
+      },
+      "price_input_per_mtok": {
+        "v": 2,
+        "src": "models-dev-openai-2026-11-05"
+      },
+      "price_output_per_mtok": {
+        "v": 10,
+        "src": "models-dev-openai-2026-11-05"
+      },
+      "abilities": {
+        "v": [
+          "reasoning",
+          "tools",
+          "vision",
+          "pdf"
+        ],
+        "src": "models-dev-openai-2026-11-05"
+      }
+    },
+    {
+      "id": "gpt-6-astra",
+      "name": "GPT 6 Astra",
+      "vendor": "OpenAI",
+      "aliases": [],
+      "summary": {
+        "v": "Near the top on score with the best TerminalBench Science result, but the most expensive model per task here.",
+        "src": "editorial"
+      },
+      "hermes_index": {
+        "v": 56.25,
+        "src": "hermes-index-2026-11-05"
+      },
+      "hermes_index_suites": {
+        "v": {
+          "hermes_bench": 73.67,
+          "terminalbench_4": 41.3,
+          "terminalbench_science": 57.1,
+          "skillsbench_clean": 52.9
+        },
+        "src": "hermes-index-2026-11-05"
+      },
+      "cost_per_task_usd": {
+        "v": 11.61,
+        "src": "hermes-index-2026-11-05"
+      },
+      "context_tokens": {
+        "v": 1050000,
+        "src": "models-dev-openai-2026-11-05"
+      },
+      "max_input_tokens": {
+        "v": 922000,
+        "src": "models-dev-openai-2026-11-05"
+      },
+      "max_output_tokens": {
+        "v": 128000,
+        "src": "models-dev-openai-2026-11-05"
+      },
+      "price_input_per_mtok": {
+        "v": 10,
+        "src": "models-dev-openai-2026-11-05"
+      },
+      "price_output_per_mtok": {
+        "v": 50,
+        "src": "models-dev-openai-2026-11-05"
+      },
+      "abilities": {
+        "v": [
+          "reasoning",
+          "tools",
+          "vision",
+          "pdf"
+        ],
+        "src": "models-dev-openai-2026-11-05"
+      }
+    },
+    {
+      "id": "claude-sonnet-5-5",
+      "name": "Claude Sonnet 5.5",
+      "vendor": "Anthropic",
+      "aliases": [],
+      "summary": {
+        "v": "Strong all-rounder with a high SkillsBench score at roughly half of Opus 5.5's cost per task.",
+        "src": "editorial"
+      },
+      "hermes_index": {
+        "v": 53.14,
+        "src": "hermes-index-2026-11-05"
+      },
+      "hermes_index_suites": {
+        "v": {
+          "hermes_bench": 73.46,
+          "terminalbench_4": 36.5,
+          "terminalbench_science": 35.7,
+          "skillsbench_clean": 66.9
+        },
+        "src": "hermes-index-2026-11-05"
+      },
+      "cost_per_task_usd": {
+        "v": 2.82,
+        "src": "hermes-index-2026-11-05",
+        "note": "Marked provisional on the leaderboard (partial run or estimate)."
+      },
+      "context_tokens": {
+        "v": 1000000,
+        "src": "models-dev-anthropic-2026-11-05"
+      },
+      "max_output_tokens": {
+        "v": 128000,
+        "src": "models-dev-anthropic-2026-11-05"
+      },
+      "price_input_per_mtok": {
+        "v": 2,
+        "src": "models-dev-anthropic-2026-11-05"
+      },
+      "price_output_per_mtok": {
+        "v": 10,
+        "src": "models-dev-anthropic-2026-11-05"
+      },
+      "abilities": {
+        "v": [
+          "reasoning",
+          "tools",
+          "vision",
+          "pdf"
+        ],
+        "src": "models-dev-anthropic-2026-11-05"
+      }
+    },
+    {
+      "id": "gpt-6-sol",
+      "name": "GPT 6 Sol",
+      "vendor": "OpenAI",
+      "aliases": [],
+      "summary": {
+        "v": "Predecessor of GPT 6.1 Sol at the same token price; 6.1 Sol scores higher for less per task.",
+        "src": "editorial"
+      },
+      "hermes_index": {
+        "v": 44.1,
+        "src": "hermes-index-2026-11-05"
+      },
+      "hermes_index_suites": {
+        "v": {
+          "hermes_bench": 73.5,
+          "terminalbench_4": 23.8,
+          "terminalbench_science": 18.6,
+          "skillsbench_clean": 60.5
+        },
+        "src": "hermes-index-2026-11-05"
+      },
+      "cost_per_task_usd": {
+        "v": 2.23,
+        "src": "hermes-index-2026-11-05"
+      },
+      "context_tokens": {
+        "v": 1050000,
+        "src": "models-dev-openai-2026-11-05"
+      },
+      "max_input_tokens": {
+        "v": 922000,
+        "src": "models-dev-openai-2026-11-05"
+      },
+      "max_output_tokens": {
+        "v": 128000,
+        "src": "models-dev-openai-2026-11-05"
+      },
+      "price_input_per_mtok": {
+        "v": 2,
+        "src": "models-dev-openai-2026-11-05"
+      },
+      "price_output_per_mtok": {
+        "v": 10,
+        "src": "models-dev-openai-2026-11-05"
+      },
+      "abilities": {
+        "v": [
+          "reasoning",
+          "tools",
+          "vision",
+          "pdf"
+        ],
+        "src": "models-dev-openai-2026-11-05"
+      }
+    },
+    {
+      "id": "grok-4-7",
+      "name": "Grok 4.7",
+      "vendor": "xAI",
+      "aliases": [],
+      "summary": {
+        "v": "High Hermes Bench and SkillsBench scores but weak on the terminal suites, and expensive per task.",
+        "src": "editorial"
+      },
+      "hermes_index": {
+        "v": 39.32,
+        "src": "hermes-index-2026-11-05"
+      },
+      "hermes_index_suites": {
+        "v": {
+          "hermes_bench": 74.38,
+          "terminalbench_4": 12.7,
+          "terminalbench_science": 1.4,
+          "skillsbench_clean": 68.8
+        },
+        "src": "hermes-index-2026-11-05"
+      },
+      "cost_per_task_usd": {
+        "v": 10.77,
+        "src": "hermes-index-2026-11-05"
+      },
+      "context_tokens": {
+        "v": 500000,
+        "src": "models-dev-xai-2026-11-05"
+      },
+      "max_output_tokens": {
+        "v": 500000,
+        "src": "models-dev-xai-2026-11-05"
+      },
+      "price_input_per_mtok": {
+        "v": 2,
+        "src": "models-dev-xai-2026-11-05"
+      },
+      "price_output_per_mtok": {
+        "v": 6,
+        "src": "models-dev-xai-2026-11-05"
+      },
+      "abilities": {
+        "v": [
+          "reasoning",
+          "tools",
+          "vision",
+          "pdf"
+        ],
+        "src": "models-dev-xai-2026-11-05"
+      }
+    },
+    {
+      "id": "glm-5-3",
+      "name": "GLM 5.3",
+      "vendor": "Z.ai",
+      "aliases": [],
+      "summary": {
+        "v": "Solid TerminalBench 4 score for a mid-priced model; text-only input.",
+        "src": "editorial"
+      },
+      "hermes_index": {
+        "v": 39.23,
+        "src": "hermes-index-2026-11-05"
+      },
+      "hermes_index_suites": {
+        "v": {
+          "hermes_bench": 71.82,
+          "terminalbench_4": 38.1,
+          "terminalbench_science": 1.4,
+          "skillsbench_clean": 45.6
+        },
+        "src": "hermes-index-2026-11-05"
+      },
+      "cost_per_task_usd": {
+        "v": 3.78,
+        "src": "hermes-index-2026-11-05"
+      },
+      "context_tokens": {
+        "v": 1000000,
+        "src": "models-dev-zai-2026-11-05"
+      },
+      "max_output_tokens": {
+        "v": 131072,
+        "src": "models-dev-zai-2026-11-05"
+      },
+      "price_input_per_mtok": {
+        "v": 1.4,
+        "src": "models-dev-zai-2026-11-05"
+      },
+      "price_output_per_mtok": {
+        "v": 4.4,
+        "src": "models-dev-zai-2026-11-05"
+      },
+      "abilities": {
+        "v": [
+          "reasoning",
+          "tools"
+        ],
+        "src": "models-dev-zai-2026-11-05"
+      }
+    },
+    {
+      "id": "kimi-k3",
+      "name": "Kimi K3",
+      "vendor": "Moonshot AI",
+      "aliases": [],
+      "summary": {
+        "v": "Mid-table score with long output limits; costs more per task than models that score about the same.",
+        "src": "editorial"
+      },
+      "hermes_index": {
+        "v": 39.16,
+        "src": "hermes-index-2026-11-05"
+      },
+      "hermes_index_suites": {
+        "v": {
+          "hermes_bench": 71.52,
+          "terminalbench_4": 19,
+          "terminalbench_science": 8.6,
+          "skillsbench_clean": 57.5
+        },
+        "src": "hermes-index-2026-11-05"
+      },
+      "cost_per_task_usd": {
+        "v": 6.5,
+        "src": "hermes-index-2026-11-05"
+      },
+      "context_tokens": {
+        "v": 1048576,
+        "src": "models-dev-moonshotai-2026-11-05"
+      },
+      "max_output_tokens": {
+        "v": 1048576,
+        "src": "models-dev-moonshotai-2026-11-05"
+      },
+      "price_input_per_mtok": {
+        "v": 3,
+        "src": "models-dev-moonshotai-2026-11-05"
+      },
+      "price_output_per_mtok": {
+        "v": 15,
+        "src": "models-dev-moonshotai-2026-11-05"
+      },
+      "abilities": {
+        "v": [
+          "reasoning",
+          "tools",
+          "vision",
+          "video"
+        ],
+        "src": "models-dev-moonshotai-2026-11-05"
+      }
+    },
+    {
+      "id": "gemini-3-8-flash",
+      "name": "Gemini Flash 3.8",
+      "vendor": "Google",
+      "aliases": [],
+      "summary": {
+        "v": "The widest input support here (text, image, video, audio, PDF); mid-table on agent tasks.",
+        "src": "editorial"
+      },
+      "hermes_index": {
+        "v": 38.12,
+        "src": "hermes-index-2026-11-05"
+      },
+      "hermes_index_suites": {
+        "v": {
+          "hermes_bench": 62.19,
+          "terminalbench_4": 23.8,
+          "terminalbench_science": 8.6,
+          "skillsbench_clean": 57.9
+        },
+        "src": "hermes-index-2026-11-05"
+      },
+      "cost_per_task_usd": {
+        "v": 3.17,
+        "src": "hermes-index-2026-11-05"
+      },
+      "context_tokens": {
+        "v": 1048576,
+        "src": "models-dev-google-2026-11-05"
+      },
+      "max_output_tokens": {
+        "v": 65536,
+        "src": "models-dev-google-2026-11-05"
+      },
+      "price_input_per_mtok": {
+        "v": 0.75,
+        "src": "models-dev-google-2026-11-05"
+      },
+      "price_output_per_mtok": {
+        "v": 3.75,
+        "src": "models-dev-google-2026-11-05"
+      },
+      "abilities": {
+        "v": [
+          "reasoning",
+          "tools",
+          "vision",
+          "pdf",
+          "audio",
+          "video"
+        ],
+        "src": "models-dev-google-2026-11-05"
+      }
+    },
+    {
+      "id": "claude-haiku-5-5",
+      "name": "Claude Haiku 5.5",
+      "vendor": "Anthropic",
+      "aliases": [],
+      "summary": {
+        "v": "Cheap and fast Anthropic tier; under $0.50 per task with a respectable Hermes Bench score.",
+        "src": "editorial"
+      },
+      "hermes_index": {
+        "v": 37,
+        "src": "hermes-index-2026-11-05"
+      },
+      "hermes_index_suites": {
+        "v": {
+          "hermes_bench": 70.97,
+          "terminalbench_4": 13.6,
+          "terminalbench_science": 8.6,
+          "skillsbench_clean": 54.8
+        },
+        "src": "hermes-index-2026-11-05"
+      },
+      "cost_per_task_usd": {
+        "v": 0.488,
+        "src": "hermes-index-2026-11-05"
+      },
+      "context_tokens": {
+        "v": 1000000,
+        "src": "models-dev-anthropic-2026-11-05"
+      },
+      "max_output_tokens": {
+        "v": 128000,
+        "src": "models-dev-anthropic-2026-11-05"
+      },
+      "price_input_per_mtok": {
+        "v": 0.1,
+        "src": "models-dev-anthropic-2026-11-05"
+      },
+      "price_output_per_mtok": {
+        "v": 0.5,
+        "src": "models-dev-anthropic-2026-11-05"
+      },
+      "abilities": {
+        "v": [
+          "reasoning",
+          "tools",
+          "vision",
+          "pdf"
+        ],
+        "src": "models-dev-anthropic-2026-11-05"
+      }
+    },
+    {
+      "id": "deepseek-v4-1-flash",
+      "name": "DeepSeek V4.1 Flash",
+      "vendor": "DeepSeek",
+      "aliases": [],
+      "summary": {
+        "v": "One of the cheapest per task while staying in the middle of the table.",
+        "src": "editorial"
+      },
+      "hermes_index": {
+        "v": 36.91,
+        "src": "hermes-index-2026-11-05"
+      },
+      "hermes_index_suites": {
+        "v": {
+          "hermes_bench": 70.74,
+          "terminalbench_4": 17.5,
+          "terminalbench_science": 2.9,
+          "skillsbench_clean": 56.5
+        },
+        "src": "hermes-index-2026-11-05"
+      },
+      "cost_per_task_usd": {
+        "v": 0.259,
+        "src": "hermes-index-2026-11-05"
+      },
+      "context_tokens": {
+        "v": 1048576,
+        "src": "models-dev-openrouter-2026-11-05"
+      },
+      "max_output_tokens": {
+        "v": 943718,
+        "src": "models-dev-openrouter-2026-11-05"
+      },
+      "price_input_per_mtok": {
+        "v": 0.045,
+        "src": "models-dev-openrouter-2026-11-05"
+      },
+      "price_output_per_mtok": {
+        "v": 0.5,
+        "src": "models-dev-openrouter-2026-11-05"
+      },
+      "abilities": {
+        "v": [
+          "reasoning",
+          "tools",
+          "vision"
+        ],
+        "src": "models-dev-openrouter-2026-11-05"
+      }
+    },
+    {
+      "id": "qwen3-8-max",
+      "name": "Qwen 3.8 Max",
+      "vendor": "Alibaba",
+      "aliases": [],
+      "summary": {
+        "v": "Mid-table score at a high cost per task.",
+        "src": "editorial"
+      },
+      "hermes_index": {
+        "v": 36.17,
+        "src": "hermes-index-2026-11-05"
+      },
+      "hermes_index_suites": {
+        "v": {
+          "hermes_bench": 70.5,
+          "terminalbench_4": 17.5,
+          "terminalbench_science": 5.7,
+          "skillsbench_clean": 51
+        },
+        "src": "hermes-index-2026-11-05"
+      },
+      "cost_per_task_usd": {
+        "v": 6.69,
+        "src": "hermes-index-2026-11-05"
+      },
+      "context_tokens": {
+        "v": 1000000,
+        "src": "models-dev-alibaba-2026-11-05"
+      },
+      "max_output_tokens": {
+        "v": 131072,
+        "src": "models-dev-alibaba-2026-11-05"
+      },
+      "price_input_per_mtok": {
+        "v": 2,
+        "src": "models-dev-alibaba-2026-11-05"
+      },
+      "price_output_per_mtok": {
+        "v": 6,
+        "src": "models-dev-alibaba-2026-11-05"
+      },
+      "abilities": {
+        "v": [
+          "reasoning",
+          "tools",
+          "vision",
+          "pdf",
+          "video"
+        ],
+        "src": "models-dev-alibaba-2026-11-05"
+      }
+    },
+    {
+      "id": "glm-5-3-flash",
+      "name": "GLM 5.3 Flash",
+      "vendor": "Z.ai",
+      "aliases": [],
+      "summary": {
+        "v": "Budget GLM that keeps a decent TerminalBench 4 score for under $0.50 per task.",
+        "src": "editorial"
+      },
+      "hermes_index": {
+        "v": 34.95,
+        "src": "hermes-index-2026-11-05"
+      },
+      "hermes_index_suites": {
+        "v": {
+          "hermes_bench": 68.88,
+          "terminalbench_4": 25.4,
+          "terminalbench_science": 2.9,
+          "skillsbench_clean": 42.6
+        },
+        "src": "hermes-index-2026-11-05"
+      },
+      "cost_per_task_usd": {
+        "v": 0.497,
+        "src": "hermes-index-2026-11-05"
+      },
+      "context_tokens": {
+        "v": 1000000,
+        "src": "models-dev-zai-2026-11-05"
+      },
+      "max_output_tokens": {
+        "v": 131072,
+        "src": "models-dev-zai-2026-11-05"
+      },
+      "price_input_per_mtok": {
+        "v": 0.15,
+        "src": "models-dev-zai-2026-11-05"
+      },
+      "price_output_per_mtok": {
+        "v": 0.5,
+        "src": "models-dev-zai-2026-11-05"
+      },
+      "abilities": {
+        "v": [
+          "reasoning",
+          "tools",
+          "vision",
+          "pdf",
+          "video"
+        ],
+        "src": "models-dev-zai-2026-11-05"
+      }
+    },
+    {
+      "id": "gpt-6-luna",
+      "name": "GPT 6 Luna",
+      "vendor": "OpenAI",
+      "aliases": [],
+      "summary": {
+        "v": "OpenAI's cheapest tier: about $0.14 per task, fine for simple agent work but weak on terminal tasks.",
+        "src": "editorial"
+      },
+      "hermes_index": {
+        "v": 33.89,
+        "src": "hermes-index-2026-11-05"
+      },
+      "hermes_index_suites": {
+        "v": {
+          "hermes_bench": 70.47,
+          "terminalbench_4": 6.3,
+          "terminalbench_science": 4.8,
+          "skillsbench_clean": 54
+        },
+        "src": "hermes-index-2026-11-05"
+      },
+      "cost_per_task_usd": {
+        "v": 0.141,
+        "src": "hermes-index-2026-11-05"
+      },
+      "context_tokens": {
+        "v": 1050000,
+        "src": "models-dev-openai-2026-11-05"
+      },
+      "max_input_tokens": {
+        "v": 922000,
+        "src": "models-dev-openai-2026-11-05"
+      },
+      "max_output_tokens": {
+        "v": 128000,
+        "src": "models-dev-openai-2026-11-05"
+      },
+      "price_input_per_mtok": {
+        "v": 0.1,
+        "src": "models-dev-openai-2026-11-05"
+      },
+      "price_output_per_mtok": {
+        "v": 0.5,
+        "src": "models-dev-openai-2026-11-05"
+      },
+      "abilities": {
+        "v": [
+          "reasoning",
+          "tools",
+          "vision",
+          "pdf"
+        ],
+        "src": "models-dev-openai-2026-11-05"
+      }
+    },
+    {
+      "id": "step-5-preview",
+      "name": "Step 5 Preview",
+      "vendor": "StepFun",
+      "aliases": [],
+      "summary": {
+        "v": "Preview model with a 1M context window; lower-middle of the table.",
+        "src": "editorial"
+      },
+      "hermes_index": {
+        "v": 32.83,
+        "src": "hermes-index-2026-11-05"
+      },
+      "hermes_index_suites": {
+        "v": {
+          "hermes_bench": 69.2,
+          "terminalbench_4": 12.7,
+          "terminalbench_science": 7.1,
+          "skillsbench_clean": 42.3
+        },
+        "src": "hermes-index-2026-11-05"
+      },
+      "cost_per_task_usd": {
+        "v": 1.75,
+        "src": "hermes-index-2026-11-05"
+      },
+      "context_tokens": {
+        "v": 1000000,
+        "src": "models-dev-stepfun-2026-11-05"
+      },
+      "max_input_tokens": {
+        "v": 1000000,
+        "src": "models-dev-stepfun-2026-11-05"
+      },
+      "max_output_tokens": {
+        "v": 65536,
+        "src": "models-dev-stepfun-2026-11-05"
+      },
+      "price_input_per_mtok": {
+        "v": 1.04613,
+        "src": "models-dev-stepfun-2026-11-05"
+      },
+      "price_output_per_mtok": {
+        "v": 2.98895,
+        "src": "models-dev-stepfun-2026-11-05"
+      },
+      "abilities": {
+        "v": [
+          "reasoning",
+          "tools",
+          "vision",
+          "video"
+        ],
+        "src": "models-dev-stepfun-2026-11-05"
+      }
+    },
+    {
+      "id": "hy4-preview",
+      "name": "Hy4 Preview",
+      "vendor": "Tencent",
+      "aliases": [],
+      "summary": {
+        "v": "Preview model near the bottom of the table; cheap per task, text-only.",
+        "src": "editorial"
+      },
+      "hermes_index": {
+        "v": 26.13,
+        "src": "hermes-index-2026-11-05"
+      },
+      "hermes_index_suites": {
+        "v": {
+          "hermes_bench": 58.6,
+          "terminalbench_4": 12.7,
+          "terminalbench_science": 1.4,
+          "skillsbench_clean": 31.8
+        },
+        "src": "hermes-index-2026-11-05"
+      },
+      "cost_per_task_usd": {
+        "v": 0.482,
+        "src": "hermes-index-2026-11-05"
+      },
+      "context_tokens": {
+        "v": 1000000,
+        "src": "models-dev-novita-ai-2026-11-05"
+      },
+      "max_output_tokens": {
+        "v": 64000,
+        "src": "models-dev-novita-ai-2026-11-05"
+      },
+      "price_input_per_mtok": {
+        "v": 0.834,
+        "src": "models-dev-novita-ai-2026-11-05"
+      },
+      "price_output_per_mtok": {
+        "v": 2.501,
+        "src": "models-dev-novita-ai-2026-11-05"
+      },
+      "abilities": {
+        "v": [
+          "reasoning",
+          "tools"
+        ],
+        "src": "models-dev-novita-ai-2026-11-05"
+      }
+    },
+    {
+      "id": "ling-3-0-flash",
+      "name": "Ling 3.0 Flash",
+      "vendor": "inclusionAI",
+      "aliases": [],
+      "summary": {
+        "v": "The cheapest model per task in the snapshot, and the lowest score; a 262K context window.",
+        "src": "editorial"
+      },
+      "hermes_index": {
+        "v": 21.56,
+        "src": "hermes-index-2026-11-05"
+      },
+      "hermes_index_suites": {
+        "v": {
+          "hermes_bench": 53.83,
+          "terminalbench_4": 0,
+          "terminalbench_science": 0,
+          "skillsbench_clean": 32.4
+        },
+        "src": "hermes-index-2026-11-05"
+      },
+      "cost_per_task_usd": {
+        "v": 0.054,
+        "src": "hermes-index-2026-11-05"
+      },
+      "context_tokens": {
+        "v": 262144,
+        "src": "models-dev-novita-ai-2026-11-05"
+      },
+      "max_output_tokens": {
+        "v": 32768,
+        "src": "models-dev-novita-ai-2026-11-05"
+      },
+      "price_input_per_mtok": {
+        "v": 0.06,
+        "src": "models-dev-novita-ai-2026-11-05"
+      },
+      "price_output_per_mtok": {
+        "v": 0.18,
+        "src": "models-dev-novita-ai-2026-11-05"
+      },
+      "abilities": {
+        "v": [
+          "reasoning",
+          "tools"
+        ],
+        "src": "models-dev-novita-ai-2026-11-05"
+      }
+    }
+  ]
+}

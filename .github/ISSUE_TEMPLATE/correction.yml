@@ -1,0 +1,58 @@
+name: Data correction
+description: Report a wrong, outdated or missing value in data/models.json
+title: "Correction: "
+labels: [data]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Corrections change data only. Every value needs a public source and a date.
+  - type: input
+    id: model
+    attributes:
+      label: Model id
+      description: As shown in the explainer or the picker (e.g. claude-opus-5-5 or anthropic/claude-opus-5.5)
+    validations:
+      required: true
+  - type: dropdown
+    id: field
+    attributes:
+      label: Field
+      options:
+        - Hermes Index score
+        - Cost per task
+        - Context window
+        - Max input
+        - Max output
+        - Price
+        - Abilities
+        - One-line explanation
+        - Reasoning-effort data
+        - Missing model (add it)
+        - Picker id not matched (add an alias)
+        - Other
+    validations:
+      required: true
+  - type: input
+    id: value
+    attributes:
+      label: Correct value
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: Source URL
+      description: Public page where this value appears
+    validations:
+      required: true
+  - type: input
+    id: date
+    attributes:
+      label: Date you checked the source (YYYY-MM-DD)
+    validations:
+      required: true
+  - type: textarea
+    id: notes
+    attributes:
+      label: Notes
