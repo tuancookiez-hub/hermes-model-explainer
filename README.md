@@ -7,6 +7,11 @@ column is Hermes' own menu, so provider sections, names, `-fast` grouping, favor
 and your Edit Models shortlist are exactly what the composer shows. Choosing a row
 explains that model, and **Use this model** switches your chat to it:
 
+- **In plain terms**, first: one sentence on what the model is best and weakest at, then
+  a plain level (Among the best, Strong, Fair, Weak) for coding and terminal work,
+  science and data tasks, everyday agent work, and using skills and tools. Each line
+  is one Hermes Index test, so the words stay tied to sourced scores. Compare says
+  the same in sentences: which model is better at what, and which is cheapest.
 - **Hermes Index** score and rank, with the per-suite breakdown (Hermes Bench,
   TerminalBench 4, TerminalBench Science, SkillsBench)
 - **Cost per task** on the Hermes Index

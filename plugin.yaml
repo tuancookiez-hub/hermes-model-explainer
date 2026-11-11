@@ -1,5 +1,5 @@
 name: model-explainer
-version: "0.3.0"
+version: "0.4.0"
 description: "Hermes Desktop page built around your model picker: choose a model to see its Hermes Index score, cost per task, context and output limits, price, abilities and your own measured speed and spend, or compare up to four side by side, then switch your chat to it with Use this model (the same config.set request as the built-in picker, never without a click). Every value cites a source and date. Network: one GET of a public JSON data file on GitHub, at most daily and only when the page opens; it can be turned off, and the bundled copy works offline. Desktop-only (desktop/plugin.js inside the plugin SDK surface); no agent tools, hooks, middleware or env vars."
 author: tuancookiez-hub
 homepage: https://github.com/tuancookiez-hub/hermes-model-explainer

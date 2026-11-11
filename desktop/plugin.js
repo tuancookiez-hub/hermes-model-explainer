@@ -986,6 +986,182 @@ function FrontierSection({ marked, onPick }) {
   })
 }
 
+// ---------------------------------------------------------------------------
+// In plain terms. Each area is one benchmark suite from the data file, renamed for people
+// who do not know the suites. A level compares the model's score with the best score any
+// indexed model has on that suite, so the words stay tied to sourced numbers.
+// ---------------------------------------------------------------------------
+
+const AREAS = [
+  { key: 'terminalbench_4', label: 'Coding and terminal work', short: 'coding and terminal work', test: 'TerminalBench 4' },
+  { key: 'terminalbench_science', label: 'Science and data tasks', short: 'science and data tasks', test: 'TerminalBench Science' },
+  { key: 'hermes_bench', label: 'Everyday agent work', short: 'everyday agent work', test: 'Hermes Bench: research, memory, tool use' },
+  { key: 'skillsbench_clean', label: 'Using skills and tools', short: 'using skills and tools', test: 'SkillsBench' }
+]
+const LEVELS = [
+  { word: 'Among the best', bars: 4 },
+  { word: 'Strong', bars: 3 },
+  { word: 'Fair', bars: 2 },
+  { word: 'Weak', bars: 1 }
+]
+
+/** Where one model stands in one area: score, rank among indexed models, and a plain level. */
+function areaStanding(entry, area) {
+  const score = entry?.hermes_index_suites?.v?.[area.key]
+  if (typeof score !== 'number') return null
+  const all = DATA.models.map(m => m.hermes_index_suites?.v?.[area.key]).filter(v => typeof v === 'number')
+  const best = Math.max(...all)
+  const rank = all.filter(v => v > score).length + 1
+  const ratio = best > 0 ? score / best : 0
+  const level = ratio >= 0.9 && rank <= 3 ? 0 : ratio >= 0.7 ? 1 : ratio >= 0.4 ? 2 : 3
+  return { area, score, rank, of: all.length, ratio, level }
+}
+
+function joinWords(list) {
+  return list.length < 2 ? list.join('') : `${list.slice(0, -1).join(', ')} and ${list[list.length - 1]}`
+}
+
+/** One sentence: what the model is best at, and where it falls short. */
+function plainHeadline(standings, verdict) {
+  const sorted = [...standings].sort((a, b) => a.level - b.level || b.ratio - a.ratio)
+  const good = sorted.filter(s => s.level <= 1)
+  const weak = sorted.filter(s => s.level === 3)
+  const parts = []
+  if (good.length === standings.length) parts.push('Strong across the board')
+  else if (good.length) parts.push(`Best at ${joinWords(good.slice(0, 2).map(s => s.area.short))}`)
+  else parts.push('No standout strength on these tests')
+  if (weak.length) parts.push(`weak at ${joinWords(weak.slice(0, 2).map(s => s.area.short))}`)
+  let text = `${parts.join(', ')}.`
+  if (verdict) text += verdict.on ? ' Good value: nothing cheaper scores higher overall.' : ' Not the best value: a cheaper model scores higher overall.'
+  return text
+}
+
+function LevelMeter({ bars }) {
+  return jsx('span', {
+    'aria-hidden': true,
+    style: { display: 'inline-flex', gap: 3 },
+    children: [0, 1, 2, 3].map(i =>
+      jsx('span', { style: { width: 14, height: 5, borderRadius: 3, background: i < bars ? C.accent : C.stroke } }, i)
+    )
+  })
+}
+
+function PlainTerms({ entry }) {
+  const standings = AREAS.map(a => areaStanding(entry, a)).filter(Boolean)
+  if (!standings.length) return null
+  return jsxs('div', {
+    style: { ...S.card, marginTop: 16, gap: 10, maxWidth: 980 },
+    children: [
+      jsxs('div', {
+        style: { display: 'flex', gap: 8, alignItems: 'baseline', flexWrap: 'wrap' },
+        children: [
+          jsx('span', { style: { fontSize: 12, fontWeight: 600, color: C.text2, textTransform: 'uppercase', letterSpacing: 0.3 }, children: 'In plain terms' }),
+          jsx(SourceTag, { field: entry.hermes_index_suites })
+        ]
+      }),
+      jsx('div', { style: { fontSize: 14.5, fontWeight: 600, lineHeight: 1.35 }, children: plainHeadline(standings, frontierVerdict(entry)) }),
+      jsx('div', {
+        style: { display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(270px, 1fr))', gap: '10px 24px' },
+        children: standings.map(s =>
+          jsx(
+            Tip,
+            {
+              label: `${s.area.test}: ${s.score.toFixed(1)}, number ${s.rank} of ${s.of} indexed models. The best scores ${(s.score / (s.ratio || 1)).toFixed(1)}.`,
+              children: jsxs('div', {
+                style: { display: 'flex', flexDirection: 'column', gap: 3, minWidth: 0 },
+                children: [
+                  jsxs('div', {
+                    style: { display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 8 },
+                    children: [
+                      jsx('span', { style: { fontSize: 13, color: C.text }, children: s.area.label }),
+                      jsx(LevelMeter, { bars: LEVELS[s.level].bars })
+                    ]
+                  }),
+                  jsxs('div', {
+                    style: { display: 'flex', justifyContent: 'space-between', gap: 8, fontSize: 11.5, color: C.text3 },
+                    children: [
+                      jsx('span', { style: { color: s.level === 3 ? C.text3 : C.text2, fontWeight: s.level === 0 ? 650 : 400 }, children: LEVELS[s.level].word }),
+                      jsx('span', { style: { fontVariantNumeric: 'tabular-nums' }, children: `#${s.rank} of ${s.of}` })
+                    ]
+                  })
+                ]
+              })
+            },
+            s.area.key
+          )
+        )
+      }),
+      jsx('div', {
+        style: S.cardSub,
+        children: 'Each line is one Hermes Index test, named for what it measures. Hover a line for the test and score. The index has no maths-only test.'
+      })
+    ]
+  })
+}
+
+/** Compare, in sentences: who is better at what among the picked models. */
+function ComparePlain({ columns }) {
+  const named = columns.filter(c => c.entry)
+  if (named.length < 2) return null
+  const lines = []
+  for (const area of AREAS) {
+    const scored = named
+      .map(c => ({ name: c.entry.name, v: c.entry.hermes_index_suites?.v?.[area.key] }))
+      .filter(x => typeof x.v === 'number')
+      .sort((a, b) => b.v - a.v)
+    if (scored.length < 2) continue
+    const [first, second] = scored
+    const close = first.v - second.v < 2
+    lines.push({
+      key: area.key,
+      label: area.label,
+      text: close
+        ? `${first.name} and ${second.name} are about level (${first.v.toFixed(1)} and ${second.v.toFixed(1)}).`
+        : `${first.name} is better than the ${scored.length > 2 ? 'others' : 'other'} (${first.v.toFixed(1)}, next is ${second.name} at ${second.v.toFixed(1)}).`,
+      lead: close ? null : first.name
+    })
+  }
+  const costs = named
+    .map(c => ({ name: c.entry.name, v: c.entry.cost_per_task_usd?.v }))
+    .filter(x => typeof x.v === 'number')
+    .sort((a, b) => a.v - b.v)
+  if (costs.length > 1) {
+    lines.push({
+      key: 'cost',
+      label: 'Cheapest to run',
+      text: `${costs[0].name}, at ${fmtUsd(costs[0].v)} per task. ${costs[costs.length - 1].name} costs the most (${fmtUsd(costs[costs.length - 1].v)}).`,
+      lead: costs[0].name
+    })
+  }
+  if (!lines.length) return null
+  const field = named.map(c => c.entry.hermes_index_suites).find(Boolean)
+  return jsxs('div', {
+    style: { ...S.card, gap: 8, marginBottom: 16, maxWidth: 980 },
+    children: [
+      jsxs('div', {
+        style: { display: 'flex', gap: 8, alignItems: 'baseline', flexWrap: 'wrap' },
+        children: [
+          jsx('span', { style: { fontSize: 12, fontWeight: 600, color: C.text2, textTransform: 'uppercase', letterSpacing: 0.3 }, children: 'In plain terms' }),
+          field ? jsx(SourceTag, { field }) : null
+        ]
+      }),
+      ...lines.map(l =>
+        jsxs(
+          'div',
+          {
+            style: { display: 'flex', gap: 12, alignItems: 'baseline', fontSize: 13, lineHeight: 1.4 },
+            children: [
+              jsx('span', { style: { width: 190, flexShrink: 0, color: C.text2 }, children: l.label }),
+              jsx('span', { style: { color: C.text }, children: l.text })
+            ]
+          },
+          l.key
+        )
+      )
+    ]
+  })
+}
+
 function correctionUrl(modelId, entry) {
   const params = new URLSearchParams({
     template: 'correction.yml',
@@ -1193,6 +1369,7 @@ function Detail({ sel, providerRow, measuredAll, currentModel, onPick, compare }
     style: S.detail,
     children: [
       header,
+      jsx(PlainTerms, { entry }),
       jsxs('div', {
         style: S.grid,
         children: [
@@ -1364,6 +1541,7 @@ function CompareView({ picks, providers, measuredAll, onOpen, onPick }) {
   return jsxs('div', {
     style: S.detail,
     children: [
+      jsx(ComparePlain, { columns }),
       jsx('div', { style: S.tableWrap, children: jsxs('table', {
         style: S.table,
         children: [
