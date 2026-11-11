@@ -46,7 +46,7 @@ the picker itself is untouched.
 | ![Details](docs/screenshots/01-details.png) | ![Frontier and suites](docs/screenshots/02-frontier-and-suites.png) |
 | ![Sources](docs/screenshots/03-sources.png) | ![Compare](docs/screenshots/04-compare.png) |
 
-Screenshots show the plugin page on its own, with a sample provider list.
+Screenshots show the plugin page beside Hermes' sidebar in a test build, with a sample provider list and sample chats.
 
 Open it from the sidebar (**Models**) or ⌘K → **Model Explainer: Open** /
 **Explain current model**.
