@@ -7,7 +7,8 @@
  * at build time and refreshed from the public copy on GitHub, plus the speed and spend
  * Hermes measured on this machine.
  *
- * Surfaces: ROUTES_AREA page, SIDEBAR_NAV_AREA row, PALETTE_AREA commands,
+ * Surfaces: ROUTES_AREA page, a composer.actions button that opens the same explainer as a
+ * pop-up in the chat, SIDEBAR_NAV_AREA row, PALETTE_AREA commands,
  * MODEL_MENU_ROW_AREA badge. Reads: model.options (through the picker),
  * host.state.model / focusedSessionId / focusedUsage. Writes: ctx.storage, and config.set
  * model when you press "Use this model".
@@ -15,7 +16,7 @@
  * the reply is validated JSON and is never run. Timer: a debounced storage save.
  */
 
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { createContext, useContext, useEffect, useMemo, useRef, useState } from 'react'
 import { jsx, jsxs } from 'react/jsx-runtime'
 import {
   atom,
@@ -1180,7 +1181,7 @@ function correctionUrl(modelId, entry) {
 const $switching = atom('')
 
 async function switchModel(sel, label) {
-  if ($switching.get()) return
+  if ($switching.get()) return false
   const sessionId = host.state.focusedSessionId?.get?.() || ''
   const send = confirmed =>
     host.request('config.set', {
@@ -1200,9 +1201,12 @@ async function switchModel(sel, label) {
   $switching.set(sel.model)
   try {
     const res = await send(false)
-    if (!res?.confirm_required) return finish(res)
+    if (!res?.confirm_required) {
+      finish(res)
+      return true
+    }
     if (typeof SDK.surfaceModelSwitchConfirm === 'function') {
-      await SDK.surfaceModelSwitchConfirm({
+      return await SDK.surfaceModelSwitchConfirm({
         confirmMessage: res.confirm_message,
         failureMessage: failed,
         isStale: () => (host.state.focusedSessionId?.get?.() || '') !== sessionId,
@@ -1218,9 +1222,11 @@ async function switchModel(sel, label) {
   } finally {
     $switching.set('')
   }
+  return false
 }
 
 function UseModelButton({ sel, isCurrent, label }) {
+  const closePopup = useContext(PopupClose)
   const switching = useValue($switching)
   const gateway = useValue(host.state.gateway)
   const offline = gateway !== 'open'
@@ -1235,7 +1241,7 @@ function UseModelButton({ sel, isCurrent, label }) {
     size: 'sm',
     variant: 'default',
     disabled: isCurrent || !sel.provider || offline || Boolean(switching),
-    onClick: () => void switchModel(sel, label),
+    onClick: () => void switchModel(sel, label).then(done => done && closePopup?.()),
     children: switching === sel.model ? 'Switching…' : isCurrent ? 'In use' : 'Use this model'
   })
   return jsx(Tip, { label: why, children: jsx('span', { style: { display: 'inline-flex' }, children: button }) })
@@ -1809,7 +1815,7 @@ function ViewTabs({ view, onChange, count }) {
   return jsxs('div', { role: 'tablist', 'aria-label': 'View', style: S.tabs, children: [tab('detail', 'Details'), tab('compare', count ? `Compare (${count})` : 'Compare')] })
 }
 
-function ExplainerPage() {
+function ExplainerPage({ popup = false } = {}) {
   const opts = useValue($options)
   const measuredAll = useValue($measured)
   const pending = useValue($pendingSelect)
@@ -1907,6 +1913,69 @@ function ExplainerPage() {
 
 
 // ---------------------------------------------------------------------------
+// In a chat: a button beside the composer's model pill opens the same explainer as a
+// pop-up, so a model can be read up on, compared and switched without leaving the chat.
+// "Use this model" closes it once the switch has been applied.
+// ---------------------------------------------------------------------------
+
+const PopupClose = createContext(null)
+const COMPOSER_ACTIONS_AREA = SDK.COMPOSER_AREAS?.actions ?? 'composer.actions'
+
+function ComposerExplainButton() {
+  const [open, setOpen] = useState(false)
+  const close = useMemo(() => () => setOpen(false), [])
+  const hasDialog = Boolean(SDK.Dialog && SDK.DialogContent && SDK.DialogTitle)
+  const show = () => {
+    const model = host.state.model.get()
+    if (model) $pendingSelect.set({ model })
+    // An older Hermes without the dialog pieces opens the page instead.
+    if (hasDialog) setOpen(true)
+    else host.navigate(ROUTE)
+  }
+  const button = jsx(Tip, {
+    label: 'Explain and switch models',
+    children: jsx('button', {
+      type: 'button',
+      'aria-label': 'Explain and switch models',
+      'aria-haspopup': 'dialog',
+      className: typeof SDK.GHOST_ICON_BTN === 'string' ? SDK.GHOST_ICON_BTN : undefined,
+      style: { display: 'inline-flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', background: 'none', border: 0, padding: 0 },
+      onClick: show,
+      children: jsx(Codicon, { name: 'graph', size: 15 })
+    })
+  })
+  if (!hasDialog) return button
+  return jsxs('span', {
+    style: { display: 'inline-flex' },
+    children: [
+      button,
+      jsx(SDK.Dialog, {
+        open,
+        onOpenChange: setOpen,
+        children: open
+          ? jsxs(SDK.DialogContent, {
+              'aria-describedby': undefined,
+              className: 'max-w-none',
+              bodyClassName: 'p-0 gap-0 overflow-hidden',
+              style: { width: 'min(1280px, 94vw)', maxWidth: 'none', height: '88vh', maxHeight: '88vh' },
+              children: [
+                jsx(SDK.DialogTitle, {
+                  style: { position: 'absolute', width: 1, height: 1, overflow: 'hidden', clipPath: 'inset(50%)', whiteSpace: 'nowrap' },
+                  children: 'Model Explainer'
+                }),
+                jsx('div', {
+                  style: { height: 'calc(88vh - 2px)', minHeight: 0, borderRadius: 'inherit', overflow: 'hidden', background: 'var(--ui-bg-editor)' },
+                  children: jsx(PopupClose.Provider, { value: close, children: jsx(ExplainerPage, { popup: true }) })
+                })
+              ]
+            })
+          : null
+      })
+    ]
+  })
+}
+
+// ---------------------------------------------------------------------------
 // Registration
 // ---------------------------------------------------------------------------
 
@@ -1925,6 +1994,7 @@ export default {
 
     ctx.registerMany([
       { id: 'page', area: ROUTES_AREA, data: { path: ROUTE }, render: () => jsx(ExplainerPage, {}) },
+      { id: 'composer-button', area: COMPOSER_ACTIONS_AREA, render: () => jsx(ComposerExplainButton, {}) },
       { id: 'nav', area: SIDEBAR_NAV_AREA, data: { path: ROUTE, label: 'Models', codicon: 'graph' } },
       {
         id: 'open',
